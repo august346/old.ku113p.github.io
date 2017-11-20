@@ -1,0 +1,53 @@
+
+@import "head-foot.css";
+body {
+  color: #178DEA;
+}
+
+a, a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+
+.h2 {
+    font-size: 30px;
+    font-family: "Myriad Pro Regular";
+}
+.content {
+  margin-top: 50px;
+  padding-bottom: 110px;
+}
+
+#gen-skills {
+  padding-top: 50px;
+}
+
+.prof-skill .h3 {
+  padding-top: 40px;
+  margin-bottom: 40px;
+}
+
+.prof-element {
+  padding: 10px 0 0 0;
+}
+
+.progress {
+  border: 1px solid silver;
+}
+
+.language {
+  height: 80px;
+  margin: 10px 0;
+  padding: 10px;
+  background: #DDD;
+}
+
+.rate {
+  font-size: 2em;
+  color: gold;
+}
+
+.notRate {
+  color: gray;
+}

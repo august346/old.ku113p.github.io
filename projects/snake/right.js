@@ -1,49 +1,5 @@
-var GAMER = "Gamer"
 
-var LIMIT = 10;
-var MAX_X = LIMIT - 1;
-var MAX_Y = LIMIT - 1;
-var SCALE_SIZE = 50;
-
-var vector = 'top';
-var speed = 500;
-var flag = false;
-var counter = 1;
-
-var snake = createSnake();
-var busyCells = [];
-updateBusyCells();
-var apple = createApple();
-
-addAllOnWindow(snake, apple);
-setTimeout(moveSnake, speed);
-setTimeout(drawAllEllements, speed);
-
-function addAllOnWindow() {
-  snake.forEach((item) => {
-    addElementOnWindow(item, "area");
-  });
-  addElementOnWindow(apple, "area");
-  addResultMonitor();
-}
-
-function SnakeElement(name, parent, prepos) {
-  this.name = name;
-  this.parent = parent;
-  this.position = parent.prepos;
-  this.prepos = prepos;
-}
-
-function createHead() {
-  var head = {
-    name: "head",
-    position: [LIMIT / 2, LIMIT / 2],
-    prepos: [LIMIT / 2, LIMIT / 2 + 1],
-    eatApple: () => {
-      var newName = "teil-" + counter;
-      var newParent = snake[snake.length - 1];
-      var newElement = new SnakeElement(newName, newParent, []);
-alert("Start the Game!");
+var GAMER = "GAMER";
 
 var LIMIT = 10;
 var MAX_X = LIMIT - 1;
@@ -242,21 +198,25 @@ function drawElement(element) {
 }
 
 document.addEventListener('keydown', (event) => {
-  var keyName = event.key;
+  var keyName = event.keyCode;
   switch (keyName) {
-    case "ArrowUp":
+      //up
+    case '38':
       vector = vector != "down" && !flag ? 'top' : vector;
       flag = true;
       break;
-    case "ArrowRight":
+      //right
+    case '39':
       vector = vector != 'left' && !flag ? 'right' : vector;
       flag = true;
       break;
-    case "ArrowDown":
+      //down
+    case '40':
       vector = vector != "top" && !flag ? 'down' : vector;
       flag = true;
       break;
-    case "ArrowLeft":
+      //left
+    case '37':
       vector = vector != "right" && !flag ? 'left' : vector;
       flag = true;
       break;
@@ -264,49 +224,48 @@ document.addEventListener('keydown', (event) => {
       vector = "";
       break;
   }
-
-//TEST
-  document.addEventListener('touchstart', handleTouchStart, false);        
-  document.addEventListener('touchmove', handleTouchMove, false);
-
-  var xDown = null;                                                        
-  var yDown = null;                                                        
-
-  function handleTouchStart(evt) {                                         
-      xDown = evt.touches[0].clientX;                                      
-      yDown = evt.touches[0].clientY;                                      
-  };                                                
-
-  function handleTouchMove(evt) {
-      if ( ! xDown || ! yDown ) {
-          return;
-      }
-
-      var xUp = evt.touches[0].clientX;                                    
-      var yUp = evt.touches[0].clientY;
-
-      var xDiff = xDown - xUp;
-      var yDiff = yDown - yUp;
-
-      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-          if ( xDiff > 0 ) {
-              vector = vector != "right" && !flag ? 'left' : vector;
-              flag = true;
-          } else {
-              vector = vector != 'left' && !flag ? 'right' : vector;
-              flag = true;
-          }                       
-      } else {
-          if ( yDiff > 0 ) {
-              vector = vector != "top" && !flag ? 'down' : vector;
-              flag = true;
-          } else { 
-              vector = vector != "top" && !flag ? 'down' : vector;
-              flag = true;
-          }                                                                 
-      }
-      /* reset values */
-      xDown = null;
-      yDown = null;                                             
-  };
 });
+//TEST
+document.addEventListener('touchstart', handleTouchStart, false);        
+document.addEventListener('touchmove', handleTouchMove, false);
+
+var xDown = null;                                                        
+var yDown = null;                                                        
+
+function handleTouchStart(evt) {                                         
+    xDown = evt.touches[0].clientX;                                      
+    yDown = evt.touches[0].clientY;                                      
+};                                                
+
+function handleTouchMove(evt) {
+    if ( ! xDown || ! yDown ) {
+        return;
+    }
+
+    var xUp = evt.touches[0].clientX;                                    
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if ( xDiff > 0 ) {
+            vector = vector != "right" && !flag ? 'left' : vector;
+            flag = true;
+        } else {
+            vector = vector != 'left' && !flag ? 'right' : vector;
+      flag = true;
+        }                       
+    } else {
+        if ( yDiff > 0 ) {
+            vector = vector != "down" && !flag ? 'top' : vector;
+            flag = true;
+        } else { 
+            vector = vector != "top" && !flag ? 'down' : vector;
+            flag = true;
+        }                                                                 
+    }
+    /* reset values */
+    xDown = null;
+    yDown = null;                                             
+};

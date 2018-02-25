@@ -46,7 +46,7 @@ function createHead() {
     eatApple: () => {
       var newName = "teil-" + counter;
       var newParent = snake[snake.length - 1];
-      var newElement = new SnakeElement(newName, newParent, []);Welcome to the ku113p.github.io wiki!
+      var newElement = new SnakeElement(newName, newParent, []);
 alert("Start the Game!");
 
 var LIMIT = 10;

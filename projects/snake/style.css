@@ -3,6 +3,10 @@
   padding: 0;
   background: #5555cc;
 }
+
+body {
+  overflow-y: hidden;
+}
 #area {
   margin: 0 auto;
   width: 500px;

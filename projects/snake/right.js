@@ -1,8 +1,4 @@
-alert("Control woth your arrows on keyboard.\n 'q'-key pause the game.\nAny arrow will continue the game!\nGood Luck!");
-
-var GAMER = prompt("Your name?\n(For score table)");
-
-alert("Start the Game!");
+var GAMER = "Gamer"
 
 var LIMIT = 10;
 var MAX_X = LIMIT - 1;

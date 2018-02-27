@@ -34,7 +34,7 @@ body {
   z-index: 1;
 }
 #info-list {
-  margin: 0 auto;
+  /* margin: 0 auto; */
   margin-top: 50px;
   padding: 10px;
   text-align: center;
@@ -45,4 +45,13 @@ body {
   color: white;
   border: 5px solid #cc5555;
   border-bottom: 0px;
+}
+
+#area {
+  float: left;
+}
+#control {
+  float: left;
+  background-color: green;
+  margin-top: 300px;  
 }

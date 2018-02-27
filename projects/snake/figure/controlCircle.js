@@ -7,8 +7,8 @@ class ControlCircle extends Circle{
 
   updatePos(canvas, e) {
     var rect = canvas.getBoundingClientRect();
-    this.x = e.clientX - rect.left;
-    this.y = e.clientY - rect.top;
+    this.x = evt.touches[0].clientX - rect.left;
+    this.y = evt.touches[0].clientY - rect.top;
     var pos = this.toMaxCoord();
     return pos;
   }

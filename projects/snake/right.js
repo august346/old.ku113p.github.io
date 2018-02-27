@@ -1,4 +1,3 @@
-
 var GAMER = "GAMER";
 
 var LIMIT = 10;
@@ -226,46 +225,78 @@ document.addEventListener('keydown', (event) => {
   }
 });
 //TEST
-document.addEventListener('touchstart', handleTouchStart, false);        
-document.addEventListener('touchmove', handleTouchMove, false);
+  // document.addEventListener('touchstart', handleTouchStart, false);
+  // document.addEventListener('touchmove', handleTouchMove, false);
+  //
+  // var xDown = null;
+  // var yDown = null;
+  //
+  // function handleTouchStart(evt) {
+  //     xDown = evt.touches[0].clientX;
+  //     yDown = evt.touches[0].clientY;
+  // };
+  //
+  // function handleTouchMove(evt) {
+  //     if ( ! xDown || ! yDown ) {
+  //         return;
+  //     }
+  //
+  //     var xUp = evt.touches[0].clientX;
+  //     var yUp = evt.touches[0].clientY;
+  //
+  //     var xDiff = xDown - xUp;
+  //     var yDiff = yDown - yUp;
+  //
+  //     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+  //         if ( xDiff > 0 ) {
+  //             vector = vector != "right" && !flag ? 'left' : vector;
+  //             flag = true;
+  //         } else {
+  //             vector = vector != 'left' && !flag ? 'right' : vector;
+  //       flag = true;
+  //         }
+  //     } else {
+  //         if ( yDiff > 0 ) {
+  //             vector = vector != "down" && !flag ? 'top' : vector;
+  //             flag = true;
+  //         } else {
+  //             vector = vector != "top" && !flag ? 'down' : vector;
+  //             flag = true;
+  //         }
+  //     }
+  //     /* reset values */
+  //     xDown = null;
+  //     yDown = null;
+  // };
 
-var xDown = null;                                                        
-var yDown = null;                                                        
+var canvas = document.getElementById('control');
+var miniContr = new ControlCircle("ControlCircle", canvas.width/2, canvas.height/2, 15, "blue");
+var needToDraw = [miniContr];
+var mouseDown = [0,0]
+function mid() {
+  canvas.getContext("2d").clearRect(0,0,canvas.width,canvas.height);
+  for(var i = 0; i<needToDraw.length; i++) {
+    needToDraw[i].draw(canvas, mouseDown);
+  }
+}
+setInterval(mid, 10);
 
-function handleTouchStart(evt) {                                         
-    xDown = evt.touches[0].clientX;                                      
-    yDown = evt.touches[0].clientY;                                      
-};                                                
+window.addEventListener("touchstart", onMouseDown, true);
+window.addEventListener("touchmove", onMouseMove, true);
+window.addEventListener("touchup", onMouseUp, true);
 
-function handleTouchMove(evt) {
-    if ( ! xDown || ! yDown ) {
-        return;
-    }
 
-    var xUp = evt.touches[0].clientX;                                    
-    var yUp = evt.touches[0].clientY;
-
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
-
-    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-        if ( xDiff > 0 ) {
-            vector = vector != "right" && !flag ? 'left' : vector;
-            flag = true;
-        } else {
-            vector = vector != 'left' && !flag ? 'right' : vector;
-      flag = true;
-        }                       
-    } else {
-        if ( yDiff > 0 ) {
-            vector = vector != "down" && !flag ? 'top' : vector;
-            flag = true;
-        } else { 
-            vector = vector != "top" && !flag ? 'down' : vector;
-            flag = true;
-        }                                                                 
-    }
-    /* reset values */
-    xDown = null;
-    yDown = null;                                             
-};
+function onMouseDown (e) {
+  // mouseDown = { x: e.clientX, y: e.clientY };
+  mouseDown = "s";
+}
+function onMouseMove (e) {
+  if (mouseDown != null) {
+    mouseDown = miniContr.updatePos(canvas, e);
+  }
+}
+function onMouseUp (e) {
+  mouseDown = null;
+  miniContr.x = canvas.width-50;
+  miniContr.y = canvas.height-50;
+}
